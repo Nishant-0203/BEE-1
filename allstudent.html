@@ -44,53 +44,172 @@
         tr:hover {
             background-color: #f1f1f1;
         }
+        .nishant{
+            min-height: 56vh;
+        }
     </style>
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
+
+  
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+ 
+  <link href="assets/css/main.css" rel="stylesheet">
+
 </head>
 
 <body>
+    <header id="header" class="header d-flex align-items-center sticky-top">
+        <div class="container position-relative d-flex align-items-center justify-content-between">
+    
+          <a href="/home" class="logo d-flex align-items-center me-auto me-xl-0">
+            <h1 class="sitename">ZaikaZone</h1>
+            <span>.</span>
+          </a>
+    
+          <nav id="navmenu" class="navmenu">
+            <ul>
+              <li><a href="/home" class="active">Home<br></a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="http://localhost:3000/menu">Menu</a></li>
+              <li><a href="http://localhost:3000/viewBookings">Table</a></li>
+              <li><a href="http://localhost:3000/allstudent">Record</a></li>
+              <li><a href="#">Gallery</a></li>
+              <li><a href="http://localhost:3000/contact">Contact</a></li>
+              <li><a href="http://localhost:3000/register">Login</a></li>
+            </ul>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+          </nav>
+    
+          <a class="btn-getstarted" href="http://localhost:3000/table">Book a Table</a>
+    
+        </div>
+      </header>
     <h1>All Student Data</h1>
+    <div class="nishant"></div>
+
 
     <script>
-        document.getElementsByTagName("h1")[0].innerHTML = "Records";
         fetch("http://localhost:3000")
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-
+    
                 const table = document.createElement('table');
                 const tableBody = document.createElement('tbody');
                 const tableHead = document.createElement('thead');
-
+    
                 // Create header row
                 const headerRow = document.createElement('tr');
                 const nameHeader = document.createElement('th');
                 const emailHeader = document.createElement('th');
-
+    
                 nameHeader.textContent = 'Name';
                 emailHeader.textContent = 'Email';
-
+    
                 headerRow.appendChild(nameHeader);
                 headerRow.appendChild(emailHeader);
                 tableHead.appendChild(headerRow);
-
+    
                 data.forEach(person => {
                     const row = document.createElement('tr');
                     const nameCell = document.createElement('td');
                     const emailCell = document.createElement('td');
-
+    
                     nameCell.textContent = person.name;
                     emailCell.textContent = person.email;
-
+    
                     row.appendChild(nameCell);
                     row.appendChild(emailCell);
                     tableBody.appendChild(row);
                 });
-
+    
                 table.appendChild(tableHead);
                 table.appendChild(tableBody);
-                document.body.appendChild(table);
+    
+                // Append the table to the div with class 'nishant'
+                const containerDiv = document.querySelector('.nishant');
+                containerDiv.appendChild(table);
             });
     </script>
+    
+
+    <footer id="footer" class="footer dark-background">
+
+        <div class="container">
+          <div class="row gy-3">
+            <div class="col-lg-3 col-md-6 d-flex">
+              <i class="bi bi-geo-alt icon"></i>
+              <div class="address">
+                <h4>Address</h4>
+                <p>Chitkara University</p>
+                <p>Rajpura,Punjab</p>
+                <p></p>
+              </div>
+    
+            </div>
+    
+            <div class="col-lg-3 col-md-6 d-flex">
+              <i class="bi bi-telephone icon"></i>
+              <div>
+                <h4>Contact</h4>
+                <p>
+                  <strong>Phone:</strong> <span>+91 9090909090</span><br>
+                  <strong>Email:</strong> <span>ZaikaZone@gmail.com</span><br>
+                </p>
+              </div>
+            </div>
+    
+            <div class="col-lg-3 col-md-6 d-flex">
+              <i class="bi bi-clock icon"></i>
+              <div>
+                <h4>Opening Hours</h4>
+                <p>
+                  <strong>Mon-Sat:</strong> <span>11AM - 23PM</span><br>
+                  <strong>Sunday</strong>: <span>Closed</span>
+                </p>
+              </div>
+            </div>
+    
+            <div class="col-lg-3 col-md-6">
+              <h4>Follow Us</h4>
+              <div class="social-links d-flex">
+                <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+    
+        <div class="container copyright text-center mt-4">
+          <p>© <span>Copyright</span> <strong class="px-1 sitename">ZaikaZone</strong> <span>All Rights Reserved</span></p>
+          <div class="credits">
+            Designed by <a href="#">John Wick</a> Distributed by <a href="#">Students</a>
+          </div>
+        </div>
+    
+    </footer>
+
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"></a>
+
+<div id="preloader"></div>
+
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+<script src="assets/js/main.js"></script>
 </body>
 
 </html>

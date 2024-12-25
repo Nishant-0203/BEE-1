@@ -34,7 +34,17 @@ const server = http.createServer((req, res) => {
     // Serve homepage
     else if (url === "/table") {
       serveFile("Table.html", "text/html", res);
+    }
+    else if (url == "/home"){
+      serveFile("index.html", "text/html", res);
     } 
+    else if (url == "/contact"){
+      serveFile("contact.html", "text/html", res);
+    } 
+    else if (url == "/menu"){
+      serveFile("Menu.html", "text/html", res);
+    } 
+
     // Serve register page
     else if (url === "/register") {
       serveFile("register.html", "text/html", res);
