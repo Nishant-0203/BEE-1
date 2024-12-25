@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Student</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>All Student Data</h1>
+
+    <script>
+        document.getElementsByTagName("h1")[0].innerHTML = "Records";
+        fetch("http://localhost:3000")
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+
+                const table = document.createElement('table');
+                const tableBody = document.createElement('tbody');
+                const tableHead = document.createElement('thead');
+
+                // Create header row
+                const headerRow = document.createElement('tr');
+                const nameHeader = document.createElement('th');
+                const emailHeader = document.createElement('th');
+
+                nameHeader.textContent = 'Name';
+                emailHeader.textContent = 'Email';
+
+                headerRow.appendChild(nameHeader);
+                headerRow.appendChild(emailHeader);
+                tableHead.appendChild(headerRow);
+
+                data.forEach(person => {
+                    const row = document.createElement('tr');
+                    const nameCell = document.createElement('td');
+                    const emailCell = document.createElement('td');
+
+                    nameCell.textContent = person.name;
+                    emailCell.textContent = person.email;
+
+                    row.appendChild(nameCell);
+                    row.appendChild(emailCell);
+                    tableBody.appendChild(row);
+                });
+
+                table.appendChild(tableHead);
+                table.appendChild(tableBody);
+                document.body.appendChild(table);
+            });
+    </script>
+</body>
+
+</html>

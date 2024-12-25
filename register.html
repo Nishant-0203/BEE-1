@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #2980b9, #8e44ad);
+            display: flex;
+            margin-top: 170px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+            width: 400px;
+            box-sizing: border-box;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        form input {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 30px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        form button {
+            width: 50%;
+            padding: 10px;
+            margin-left: 90px;
+            border: none;
+            border-radius: 5px;
+            background-color: #03e9f4;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        form button:hover {
+            background-color: #fff;
+            color: #03e9f4;
+            box-shadow: 0 0 10px #03e9f4, 0 0 20px #03e9f4;
+        }
+
+        @media (max-width: 600px) {
+            form {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Register</h1>
+        <form action="/register" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+</html>
