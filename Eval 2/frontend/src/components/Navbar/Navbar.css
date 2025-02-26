@@ -7,7 +7,9 @@
 .navbar .logo{
     width: 150px;
 }
-
+.navbar-h1{
+    color: #ff4c24;
+}
 .navbar-menu{
     display: flex;
     list-style: none;
