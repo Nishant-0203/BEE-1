@@ -1,37 +1,28 @@
-import React, { useState } from "react";
-import Navbar from "./components/Navbar/Navbar";
-import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import Cart from "./pages/Cart/Cart";
-import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
-import Footer from "./components/Footer/Footer";
-import LoginPopup from "./components/LoginPopup/LoginPopup";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Verify from "./pages/Verify/Verify";
-import MyOrders from "./pages/MyOrders/MyOrders";
-import Menu from "./pages/Menu/Menu";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from 'react-router-dom';
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
-const App = () => {
-  const [showLogin, setShowLogin] = useState(false);
+function App() {
   return (
-    <>
-      {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
-      <div className="app">
-        <ToastContainer />
-        <Navbar setShowLogin={setShowLogin} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/order" element={<PlaceOrder />} />
-          <Route path="/verify" element={<Verify />} />
-          <Route path="/myorders" element={<MyOrders />} />
-        </Routes>
-      </div>
-      <Footer />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+      <ToastContainer position="top-center" />
+    </Router>
   );
-};
+}
 
 export default App;
