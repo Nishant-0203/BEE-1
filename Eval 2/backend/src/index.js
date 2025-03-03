@@ -6,7 +6,7 @@ import connectDB from "./db/dbConnect.js";
 
 import authRouter from "./routes/auth.route.js"
 import noteRouter from "./routes/note.route.js"
-
+import emailRouter from "./routes/email.route.js"
 dotenv.config({ path: "./env" });
 
 // Connect to the database
@@ -30,6 +30,7 @@ app.use(cors({ origin: allowedOrigins, credentials: true }));
 // Routes
 app.use("/api/auth", authRouter);
 app.use("/api/note", noteRouter);
+app.use("/api/email", emailRouter);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
