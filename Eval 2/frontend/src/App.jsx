@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import WhyNotesMaster from "./pages/WhyNotesMaster";
+import ContactUsPage from "./pages/ContactUsPage";
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/why-notesmaster" element={<WhyNotesMaster />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/contact-us" element={<ContactUsPage />} /> 
       </Routes>
       <ToastContainer position="top-center" />
     </Router>

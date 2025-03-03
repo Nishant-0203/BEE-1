@@ -46,9 +46,7 @@ function MainNav() {
         <NavLink to="#testimonials">
           Testimonials
         </NavLink>
-        <NavLink to="#pricing">
-          Pricing
-        </NavLink>
+        <NavLink to="/contact-us">Contact</NavLink>
         <NavLink to="/dashboard">
           Dashboard
         </NavLink>
