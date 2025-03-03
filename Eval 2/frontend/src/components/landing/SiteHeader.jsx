@@ -40,8 +40,8 @@ function MainNav() {
         <span className="font-bold text-xl">NoteMaster</span>
       </Link>
       <nav className="flex items-center space-x-6 text-sm font-medium">
-        <NavLink to="#features">
-          Features
+        <NavLink to="/why-notesmaster">
+          About
         </NavLink>
         <NavLink to="#testimonials">
           Testimonials
