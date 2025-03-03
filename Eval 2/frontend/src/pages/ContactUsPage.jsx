@@ -24,27 +24,39 @@ export default function ContactUsPage() {
   // Form submission handling
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!formData.name || !formData.email || !formData.message) {
       alert("Please fill in all fields.");
       return;
     }
-
+  
     setLoading(true);
     setSuccessMessage("");
-
+  
     try {
-      // Simulating API call (Replace with real API endpoint)
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
+      const response = await fetch("http://localhost:3000/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+  
       setSuccessMessage("Message sent successfully! We will get back to you soon.");
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      alert("Something went wrong. Please try again.");
+      alert(error.message);
     } finally {
       setLoading(false);
     }
   };
+  
 
   return (
     <div className="flex min-h-screen flex-col bg-gray-50">
