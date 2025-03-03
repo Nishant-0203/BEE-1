@@ -130,6 +130,19 @@ const Dashboard = () => {
     }
   };
 
+  const getWelcomeMessage = () => {
+    const date = new Date();
+    const hours = date.getHours();
+    const username = userInfo?.username;
+    if (hours < 12) {
+      return `Good Morning, ${username}`;
+    } else if (hours >= 12 && hours < 17) {
+      return `Good Afternoon, ${username}`;
+    } else {
+      return `Good Evening, ${username}`;
+    }
+  };
+
   return (
     <>
       <Navbar
@@ -137,8 +150,8 @@ const Dashboard = () => {
         onSearchNote={onSearchNote}
         handleClearSearch={handleClearSearch}
       />
-
-      <div className="container mx-auto">
+        <h1 className="text-center font-semibold text-3xl mt-3">{getWelcomeMessage()}</h1>
+        <div className="container mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mt-8 max-md:m-5">
             {allNotes.map((note) => (
               <NoteCard
