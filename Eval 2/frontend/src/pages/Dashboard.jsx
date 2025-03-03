@@ -168,6 +168,7 @@ const Dashboard = () => {
     toast.success("PDF Downloaded!");
   };
   
+  // Function to Send Notes as Email
   const sendNotesByEmail = async () => {
     try {
       const email = prompt("Enter your email to receive the PDF:");
@@ -177,19 +178,44 @@ const Dashboard = () => {
         return;
       }
   
-      const res = await axios.post("http://localhost:3000/api/email/send-email", { email });
+      // Generate the PDF
+      const doc = new jsPDF();
+      allNotes.forEach((note, index) => {
+        if (index !== 0) doc.addPage();
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(18);
+        doc.text(note.title, 14, 20);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(12);
+        doc.text(`Date: ${new Date(note.createdAt).toLocaleDateString()}`, 14, 30);
+        doc.setFontSize(10);
+        doc.text(`Tags: ${note.tags.join(", ")}`, 14, 40);
+        doc.setFontSize(12);
+        doc.text("Content:", 14, 50);
+        const textLines = doc.splitTextToSize(note.content, 180);
+        doc.text(textLines, 14, 60);
+      });
+  
+      // Convert PDF to Base64
+      const pdfBase64 = doc.output("datauristring").split(",")[1];
+  
+      // Send request to backend
+      const res = await axios.post("http://localhost:3000/api/email/send-email", {
+        email,
+        pdfBase64,
+      });
   
       if (res.data.success) {
         toast.success("Email sent successfully!");
       } else {
-        toast.error(res.data.message);
+        toast.error("Failed to send email!");
       }
     } catch (error) {
-      toast.error("Failed to send email!");
+      toast.error("Error sending email!");
+      console.error(error);
     }
   };
   
-
   return (
     <>
       <Navbar
