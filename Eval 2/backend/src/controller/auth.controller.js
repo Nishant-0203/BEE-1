@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 import bcryptjs from "bcryptjs";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import jwt from "jsonwebtoken";
 
 export const signup = async (req, res, next) => {
@@ -14,10 +15,22 @@ export const signup = async (req, res, next) => {
 
   const hashedPassword = bcryptjs.hashSync(password, 10);
 
+  const avatarLocalPath = req.file?.path;
+
+  if (!avatarLocalPath) {
+    console.log("Avatar not found");
+  }
+  const avatar = await uploadOnCloudinary(avatarLocalPath);
+
+  if (!avatar) {
+    console.log("Avatar not uploaded");
+  }
+
   const newUser = new User({
     username,
     email,
     password: hashedPassword,
+    avatar: avatar?.url,
   });
 
   try {
@@ -59,7 +72,7 @@ export const signin = async (req, res, next) => {
     });
 
     // Redirect to dashboard
-    res.redirect('/dashboard');
+    res.redirect("/dashboard");
   } catch (error) {
     next(error);
   }
@@ -73,7 +86,7 @@ export const signout = async (req, res, next) => {
       success: true,
       message: "User logged out successfully",
     });
-    res.redirect('/');
+    res.redirect("/");
   } catch (error) {
     next(error);
   }

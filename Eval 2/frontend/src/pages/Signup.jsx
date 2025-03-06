@@ -11,9 +11,14 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [image, setImage] = useState(null);
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
+
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -32,16 +37,21 @@ const Signup = () => {
       setError("Please enter the password");
       return;
     }
-
     setError("");
 
-    // sign up api
+    const formData = new FormData();
+    formData.append("username", name);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("avatar", image);
+
     try {
-      const res = await axios.post(
-        "http://localhost:3000/api/auth/signup",
-        { username: name, email, password },
-        { withCredentials: true }
-      );
+      const res = await axios.post("http://localhost:3000/api/auth/signup", formData, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       if (res.data.success === false) {
         setError(res.data.message);
@@ -50,13 +60,10 @@ const Signup = () => {
       }
 
       toast.success(res.data.message);
-
       setError("");
-
       navigate("/login");
     } catch (error) {
       toast.error(error.message);
-      console.log(error.message);
       setError(error.message);
     }
   };
@@ -91,6 +98,14 @@ const Signup = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
 
+            <Label className="mb-2">Profile Image</Label>
+            <input
+              type="file"
+              accept="image/*"
+              className="border w-full p-2 rounded focus:outline-none focus:ring-2 mb-5"
+              onChange={handleImageChange}
+            />
+
             {error && <p className="text-red-500 text-sm pb-1">{error}</p>}
             <Button type="submit" className="w-full py-3 rounded mt-2">
               Sign up
@@ -98,10 +113,7 @@ const Signup = () => {
 
             <p className="text-sm text-center mt-4">
               Already have an account?{" "}
-              <Link
-                to={"/login"}
-                className="font-medium text-[#2B85FF] underline"
-              >
+              <Link to={"/login"} className="font-medium text-[#2B85FF] underline">
                 Login
               </Link>
             </p>
