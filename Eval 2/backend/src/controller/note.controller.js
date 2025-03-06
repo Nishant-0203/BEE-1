@@ -43,7 +43,7 @@ export const editNote = async (req, res, next) => {
 
   if (req.user.id !== note.userId) {
     return next(errorHandler(401, "You can only update your own note!"))
-  }
+  }//important postmen
 
   const { title, content, tags, isPinned } = req.body
 
