@@ -25,6 +25,10 @@ const noteSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+  color: { 
+    type: String, 
+    default: "#ffffff",
+  },
 })
 
 const Note = mongoose.model("Note", noteSchema)

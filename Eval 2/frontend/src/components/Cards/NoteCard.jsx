@@ -9,12 +9,13 @@ const NoteCard = ({
   content,
   tags,
   isPinned,
+  backgroundColor, 
   onPinNote,
   onEdit,
   onDelete,
 }) => {
   return (
-    <div className=" border rounded px-4 py-6 bg-white hover:shadow-xl transition-all ease-in-out">
+    <div className=" border rounded px-4 py-6 bg-white hover:shadow-xl transition-all ease-in-out" style={{ backgroundColor }}>
       <div className="flex items-center justify-between">
         <div>
           <h5 className="text-xl font-bold">{title}</h5>

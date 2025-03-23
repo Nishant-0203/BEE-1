@@ -15,6 +15,7 @@ import html2canvas from "html2canvas";
 Modal.setAppElement("#root"); // Ensure Modal works properly
 
 const Dashboard = () => {
+
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
@@ -215,6 +216,32 @@ const Dashboard = () => {
       console.error(error);
     }
   };
+  // Add this function before the Dashboard component return statement
+
+const getColorFromTitle = (title) => {
+  // Generate a consistent hash from the title
+  let hash = 0;
+  for (let i = 0; i < title.length; i++) {
+    hash = title.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  // Define an array of pleasant pastel colors
+  const colors = [
+    '#FFB3BA', // pastel red
+    '#BAFFC9', // pastel green
+    '#BAE1FF', // pastel blue
+    '#FFFFBA', // pastel yellow
+    '#FFD1DC', // pastel pink
+    '#E0BBE4', // pastel purple
+    '#957DAD', // pastel lavender
+    '#FEC8D8', // light pink
+    '#D4F0F0', // light cyan
+  ];
+
+  // Use the hash to select a color
+  const index = Math.abs(hash) % colors.length;
+  return colors[index];
+};
   
   return (
     <>
@@ -238,6 +265,7 @@ const Dashboard = () => {
               content={note.content}
               tags={note.tags}
               isPinned={note.isPinned}
+              backgroundColor={getColorFromTitle(note.title)}
               onEdit={() => handleEdit(note)}
               onDelete={() => deleteNote(note)}
               onPinNote={() => updateIsPinned(note)}
