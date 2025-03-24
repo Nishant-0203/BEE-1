@@ -17,7 +17,7 @@ export const getColorFromTitle = (title) => {
         console.log("Matched keyword:", keyword, "Color:", colors[keyword]);
         return colors[keyword];
       }
-    }
+    } 
   
     return colors["others"];
   };
