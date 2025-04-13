@@ -53,48 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use("/api/auth", authRouter);
 app.use("/api/note", noteRouter);
 app.use("/api/email", emailRouter);
-app.use("/api/feedback", feedbackRouter); // Add feedback route
-// app.get('/feedback', (req, res) => {
-//   res.render('feedback');
-// });
-app.get('/feedback', async (req, res) => {
-  const filePath = path.join(__dirname, 'contactMessages.json');
-  try {
-    const data = await fs.readFile(filePath, 'utf8');
-    const feedbacks = JSON.parse(data);
-    res.render('feedback', { feedbacks });
-  } catch (error) {
-    res.render('feedback', { feedbacks: [] });
-  }
-});
-app.post('/submit-feedback', async (req, res) => {
-    const { name, email, feedback } = req.body;
-  
-    if (!name || !email || !feedback) {
-      return res.status(400).json({ error: 'Please fill in all fields.' });
-    }
-  
-    const filePath = path.join(__dirname, '../contactMessages.json');
-    try {
-      const data = await fs.readFile(filePath, 'utf8');
-      const messages = JSON.parse(data);
-  
-      const newFeedback = {
-        name,
-        email,
-        feedback,
-       
-      };
-  
-      messages.push(newFeedback);
-      await fs.writeFile(filePath, JSON.stringify(messages, null, 2), 'utf8');
-  
-      res.status(200).json({ message: 'Feedback submitted successfully.' });
-    } catch (error) {
-      console.error('Error saving feedback:', error);
-      res.status(500).json({ error: 'Error saving feedback.' });
-    }
-  });
+app.use("/api/feedback", feedbackRouter); 
 
 // Contact Route
 app.use("/contact", contactRouter);
