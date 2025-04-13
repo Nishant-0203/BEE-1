@@ -40,7 +40,7 @@ function MainNav() {
         <span className="font-bold text-xl">NoteMaster</span>
       </Link>
       <nav className="flex items-center space-x-6 text-sm font-medium">
-        <NavLink to="/why-notesmaster">
+        <NavLink to="/why-NoteMaster">
           About
         </NavLink>
         <NavLink to="#testimonials">
@@ -52,6 +52,9 @@ function MainNav() {
         </NavLink>
         <NavLink to="http://localhost:3000/api/feedback">
           Feedback
+        </NavLink>
+        <NavLink to="http://localhost:3000/faq">
+          FAQ
         </NavLink>
       </nav>
     </div>

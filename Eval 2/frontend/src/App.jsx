@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
-import WhyNotesMaster from "./pages/WhyNotesMaster";
+import WhyNoteMaster from "./pages/WhyNoteMaster";
 import ContactUsPage from "./pages/ContactUsPage";
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
@@ -20,7 +20,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/why-notesmaster" element={<WhyNotesMaster />} />
+        <Route path="/why-NoteMaster" element={<WhyNoteMaster />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/contact-us" element={<ContactUsPage />} /> 
       </Routes>
