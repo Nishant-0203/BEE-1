@@ -50,6 +50,9 @@ function MainNav() {
         <NavLink to="/dashboard">
           Dashboard
         </NavLink>
+        <NavLink to="http://localhost:3000/feedback">
+          Feedback
+        </NavLink>
       </nav>
     </div>
   );

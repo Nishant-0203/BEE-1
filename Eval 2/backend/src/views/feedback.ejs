@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Feedback - NotesMaster</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-8">
+        <h1 class="text-3xl font-bold mb-4">Feedback Form</h1>
+        <p class="text-gray-700 mb-6">We value your feedback! Please tell us about your experience with NotesMaster.</p>
+
+      
+
+        <form action="/submit-feedback" method="POST" class="max-w-lg mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+            </div>
+            <div class="mb-6">
+                <label for="feedback" class="block text-gray-700 text-sm font-bold mb-2">Feedback</label>
+                <textarea id="feedback" name="feedback" rows="4" placeholder="Your Feedback" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+            </div>
+            <button type="submit"
+                class="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
+                Submit Feedback
+            </button>
+        </form>
+
+        <section class="py-8">
+            <h2 class="text-2xl font-bold mb-6">Testimonials</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <% if (feedbacks.length > 0) { %>
+                    <% feedbacks.forEach(item => { %>
+                        <div class="bg-white border border-gray-200 p-6 rounded shadow-sm hover:shadow-md transition-shadow">
+                            <p class="italic text-gray-600 mb-4">"<%= item.feedback %>"</p>
+                            <div class="flex justify-between items-center">
+                                <p class="font-bold text-black">- <%= item.name %></p>
+                                <p class="text-xs text-gray-500"><%= new Date(item.createdAt).toLocaleDateString() %></p>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <p class="text-gray-500 text-center col-span-3">No feedbacks yet. Be the first to share your experience!</p>
+                <% } %>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
