@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQ Chatbot - NotesMaster</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto p-8">
+    <h1 class="text-3xl font-bold mb-4">NotesMaster Chatbot Assistant</h1>
+    <p class="text-gray-700 mb-6">Ask me anything about NotesMaster – I’m here to help!</p>
+
+    <div class="max-w-lg mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div id="chat-box" class="h-96 overflow-y-auto mb-4 p-4 bg-gray-50 rounded border border-gray-200">
+        <div class="mb-2 p-3 rounded bg-blue-100 text-blue-800">
+          🤖 Hi! I'm NotesBot. Ask me anything about NotesMaster!
+        </div>
+      </div>
+
+      <div class="flex gap-2">
+        <input
+          id="user-input"
+          type="text"
+          placeholder="Type your message and hit Enter..."
+          class="flex-1 p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+        <button
+          id="clear-btn"
+          class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+        >
+          Clear
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById("chat-box");
+    const input = document.getElementById("user-input");
+    const clearBtn = document.getElementById("clear-btn");
+
+    const responses = {
+      "hi": "Hey there! 👋 Need help with NotesMaster?",
+      "hello": "Hello! How can I assist you today?",
+      "good morning": "Good morning! 🌞 Ready to boost your productivity?",
+      "good night": "Good night! 🌙 Rest well and come back stronger!",
+      "what is notesmaster": "NotesMaster is an all-in-one platform where students and teachers can create, share, and manage notes efficiently.",
+      "how to use notesmaster": "Sign up, create or upload notes, organize them in folders, and collaborate or share with peers easily.",
+      "can i share notes": "Absolutely! You can share notes with individuals or the community using a simple link or by setting visibility.",
+      "how to login": "Click on the login button on the top right and use your registered email and password.",
+      "how to register": "Go to the signup page, enter your name, email, and password. You’re ready to go!",
+      "is notesmaster free": "Yes! NotesMaster is completely free to use for all students and educators.",
+      "can i upload pdfs": "Yes, you can upload PDFs and other supported file formats to your notes.",
+      "can i edit notes": "Yes! You can create, edit, and format your notes anytime from your dashboard.",
+      "can teachers use it": "Definitely! Teachers can upload materials, create study sets, and share them with students.",
+      "how to collaborate": "Use the collaboration feature to invite others to your notes. Real-time editing is supported.",
+      "how to contact support": "Use the contact form or email us via the footer on the website.",
+      "do you support dark mode": "Currently, dark mode is under development and will be available soon.",
+      "is my data safe": "Yes, we prioritize data privacy and use secure encryption for your notes and login credentials.",
+      "bye": "Goodbye! 👋 Feel free to return whenever you need help.",
+      "thanks": "You're welcome! 😊 Always here to help.",
+      "how are you": "I’m feeling great and ready to help you ace your studies!",
+      "do you support offline access": "Offline support is coming soon. For now, make sure to save important notes locally.",
+      "can i delete notes": "Yes, just go to your dashboard, click on the note, and press the delete icon.",
+      "can i favorite notes": "Yes! Click on the star icon to favorite any important note for quick access later.",
+      "how to reset password": "Click on ‘Forgot Password’ on the login page and follow the steps to reset it.",
+      "can i change my email": "Yes, you can update your email address in your account settings.",
+      "how to delete account": "Please go to settings > account > delete account. You’ll be asked to confirm the action.",
+      "can i export notes": "Yes! You can export your notes as PDFs for offline or printed use.",
+      "what languages are supported": "Currently, we support English. Multi-language support is coming soon!",
+      "do you have a mobile app": "A mobile app is in development! Stay tuned for updates on our homepage."
+    };
+
+    input.addEventListener("keypress", function (e) {
+      if (e.key === "Enter" && input.value.trim() !== "") {
+        const userMsg = input.value.trim();
+        addMessage("user", userMsg);
+        const reply = getBotReply(userMsg.toLowerCase());
+        setTimeout(() => addMessage("bot", reply), 500);
+        input.value = "";
+      }
+    });
+
+    clearBtn.addEventListener("click", function () {
+      chatBox.innerHTML = `
+        <div class="mb-2 p-3 rounded bg-blue-100 text-blue-800">
+          🤖 Chat cleared. Ask me anything about NotesMaster!
+        </div>`;
+    });
+
+    function addMessage(sender, msg) {
+      const div = document.createElement("div");
+      div.className = sender === "user"
+        ? "mb-2 p-3 rounded bg-indigo-100 text-indigo-800 text-right"
+        : "mb-2 p-3 rounded bg-gray-200 text-gray-800";
+      div.textContent = msg;
+      chatBox.appendChild(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function getBotReply(msg) {
+      return responses[msg] || "🤖 Sorry, I didn't understand that. Try asking about features, login, notes, or settings!";
+    }
+  </script>
+</body>
+</html>
