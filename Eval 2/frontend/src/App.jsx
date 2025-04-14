@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
-import WhyNoteMaster from "./pages/WhyNoteMaster";
+import WhyNoteMaster from "./pages/WhyNotesMaster";
 import ContactUsPage from "./pages/ContactUsPage";
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"

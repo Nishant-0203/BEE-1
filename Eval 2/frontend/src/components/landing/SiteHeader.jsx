@@ -43,9 +43,6 @@ function MainNav() {
         <NavLink to="/why-NoteMaster">
           About
         </NavLink>
-        <NavLink to="#testimonials">
-          Testimonials
-        </NavLink>
         <NavLink to="/contact-us">Contact</NavLink>
         <NavLink to="/dashboard">
           Dashboard

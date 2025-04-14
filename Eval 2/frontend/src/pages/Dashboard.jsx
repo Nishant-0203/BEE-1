@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-
+import { MdEmail } from "react-icons/md";
 Modal.setAppElement("#root"); // Ensure Modal works properly
 
 const Dashboard = () => {
@@ -295,10 +295,10 @@ const getColorFromTitle = (title) => {
         </button>
 
         <button
-          className="w-16 h-16 flex items-center justify-center rounded-2xl bg-red-600 hover:bg-green-500"
+          className="w-16 h-16 flex items-center justify-center rounded-2xl bg-blue-500 hover:bg-blue-400"
           onClick={sendNotesByEmail}
         >
-          <MdPictureAsPdf className="text-[32px] text-white" />
+          <MdEmail className="text-[32px] text-white" />
         </button>
       </div>
 
