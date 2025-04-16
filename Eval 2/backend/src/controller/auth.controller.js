@@ -65,17 +65,12 @@ export const signin = async (req, res, next) => {
 
     const { password: pass, ...rest } = validUser._doc;
 
-    // Choose ONE of these response methods:
-    // Option 1: JSON response with redirect info for frontend to handle
     return res.cookie("access_token", token, { httpOnly: true }).status(200).json({
       success: true,
       message: "Login Successful!",
-      redirectUrl: "/dashboard", // Frontend can use this to redirect
+      redirectUrl: "/dashboard",
       rest,
     });
-    
-    // Option 2: Direct server redirect (remove the JSON response above if using this)
-    // return res.cookie("access_token", token, { httpOnly: true }).redirect("/dashboard");
   } catch (error) {
     next(error);
   }
@@ -84,17 +79,11 @@ export const signin = async (req, res, next) => {
 export const signout = async (req, res, next) => {
   try {
     res.clearCookie("access_token");
-
-    // Choose ONE of these response methods:
-    // Option 1: JSON response with redirect info
     return res.status(200).json({
       success: true,
       message: "User logged out successfully",
       redirectUrl: "/"
     });
-    
-    // Option 2: Direct redirect
-    // return res.clearCookie("access_token").redirect("/");
   } catch (error) {
     next(error);
   }

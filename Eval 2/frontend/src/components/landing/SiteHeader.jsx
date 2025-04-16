@@ -50,7 +50,7 @@ function MainNav() {
         <NavLink to="http://localhost:3000/api/feedback">
           Feedback
         </NavLink>
-        <NavLink to="http://localhost:3000/faq">
+        <NavLink to="http://localhost:3000/api/faq">
           FAQ
         </NavLink>
       </nav>

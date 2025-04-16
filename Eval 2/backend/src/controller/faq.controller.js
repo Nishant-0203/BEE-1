@@ -17,7 +17,7 @@ Key features include:
 - Coming soon: Dark mode, offline access, mobile app, and multi-language support
 `;
 
-export const generateChatResponse = async (req, res) => {
+export const getFaqResponses = async (req, res) => {
   try {
     const { message } = req.body;
     
