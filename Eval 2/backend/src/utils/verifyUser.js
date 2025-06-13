@@ -1,9 +1,6 @@
 import jwt from "jsonwebtoken";
 
 export const authErrorHandler = (err, req, res, next) => {
-  if (!err.authError) {
-    return next(err);
-  }
   if (err.message === "No token provided") {
     return res.status(401).json({
       success: false,

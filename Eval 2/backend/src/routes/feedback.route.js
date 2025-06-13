@@ -24,16 +24,16 @@ router.get('/', async (req, res) => {
 });
 
 // GET route to fetch all feedback as JSON (API endpoint)
-router.get('/api', async (req, res) => {
-  try {
-    const data = await fs.readFile(MESSAGES_FILE_PATH, 'utf8');
-    const messages = JSON.parse(data);
-    res.status(200).json(messages);
-  } catch (error) {
-    console.error('Error reading feedbacks:', error);
-    res.status(500).json({ error: 'Failed to load feedbacks.' });
-  }
-});
+// router.get('/api', async (req, res) => {
+//   try {
+//     const data = await fs.readFile(MESSAGES_FILE_PATH, 'utf8');
+//     const messages = JSON.parse(data);
+//     res.status(200).json(messages);
+//   } catch (error) {
+//     console.error('Error reading feedbacks:', error);
+//     res.status(500).json({ error: 'Failed to load feedbacks.' });
+//   }
+// });
 
 // POST route to save feedback
 router.post('/', async (req, res) => {

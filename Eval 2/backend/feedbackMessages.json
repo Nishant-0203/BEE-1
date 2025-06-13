@@ -12,5 +12,19 @@
     "email": "namannayak.16@gmail.com",
     "message": "This is a message\r\n",
     "date": "2025-04-16T04:10:47.225Z"
+  },
+  {
+    "id": 1747328825739,
+    "name": "Hardik Goyal",
+    "email": "hardik@example.com",
+    "message": "I want a navbar in this page\r\n",
+    "date": "2025-05-15T17:07:05.739Z"
+  },
+  {
+    "id": 1747371758715,
+    "name": "Naman Nayak",
+    "email": "namannayak.16@gmail.com",
+    "message": "ejs page",
+    "date": "2025-05-16T05:02:38.715Z"
   }
 ]
